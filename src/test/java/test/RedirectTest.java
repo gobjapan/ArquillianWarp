@@ -72,19 +72,12 @@ public class RedirectTest {
         //https://github.com/lfryc/arquillian.github.com/blob/warp-docs/docs/warp.adoc
         browser.navigate().to(contextPath + "faces/index.xhtml");
         Warp.initiate(() -> browser.findElement(By.name("frm:btn")).click())
-                //.group("faces/index.xhtml")
-                .group()
+                .group("faces/index.xhtml")
                 .observe(request().uri().contains("index.xhtml"))
                 .inspect()
-//                .inspect(new Inspection() {
-//                    private static final long serialVersionUID = 1L;
-//                });
-//                .group("faces/second.xhtml")
-//                .observe(request().index(2)).inspect(new Inspection() {
-//                    private static final long serialVersionUID = 1L;
-//                })
+                .group("faces/second.xhtml")
+                .observe(request().index(2)).inspect()
                 .execute();
-        //assertTrue(browser.getCurrentUrl().contains("faces/second.xhtml"));
         assertThat(browser.getTitle(), is("second"));
     }
     
