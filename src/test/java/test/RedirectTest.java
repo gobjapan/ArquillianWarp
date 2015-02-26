@@ -3,6 +3,7 @@ package test;
 import com.mycompany.arquillianwarp.IndexBean;
 import java.io.File;
 import java.net.URL;
+import static org.hamcrest.CoreMatchers.is;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.drone.api.annotation.Drone;
@@ -71,15 +72,20 @@ public class RedirectTest {
         //https://github.com/lfryc/arquillian.github.com/blob/warp-docs/docs/warp.adoc
         browser.navigate().to(contextPath + "faces/index.xhtml");
         Warp.initiate(() -> browser.findElement(By.name("frm:btn")).click())
-                .group("faces/index.xhtml")
-                .observe(request().index(1)).inspect(new Inspection() {
-                    private static final long serialVersionUID = 1L;
-                })
-                .group("faces/second.xhtml")
-                .observe(request().index(2)).inspect(new Inspection() {
-                    private static final long serialVersionUID = 1L;
-                }).execute();
-        assertTrue(browser.getCurrentUrl().contains("faces/second.xhtml"));
+                //.group("faces/index.xhtml")
+                .group()
+                .observe(request().uri().contains("index.xhtml"))
+                .inspect()
+//                .inspect(new Inspection() {
+//                    private static final long serialVersionUID = 1L;
+//                });
+//                .group("faces/second.xhtml")
+//                .observe(request().index(2)).inspect(new Inspection() {
+//                    private static final long serialVersionUID = 1L;
+//                })
+                .execute();
+        //assertTrue(browser.getCurrentUrl().contains("faces/second.xhtml"));
+        assertThat(browser.getTitle(), is("second"));
     }
     
 }

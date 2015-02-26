@@ -7,6 +7,7 @@
     <!-- <container default="true" qualifier="glassfish">-->
     <container default="true" qualifier="glassfish-embedded">
         <configuration>
+            
         </configuration>
     </container>
 </arquillian>
