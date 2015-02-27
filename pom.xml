@@ -26,7 +26,7 @@
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.1.6.Final</version>
+                <version>1.1.7.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -81,6 +81,11 @@
             <version>4.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.extension</groupId>
+            <artifactId>arquillian-rest-warp-api</artifactId>
+            <version>1.0.0.Alpha3</version>
+         </dependency>
     </dependencies>
 
     <build>
